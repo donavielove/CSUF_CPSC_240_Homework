@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+//problem 1
+int main() {
+	cout << "--------------------MENU------------------\n";
+	cout <<  " Drinks............................... $2\n";
+	cout << " Sandwiches .......................... $4\n";
+	short totalCost = 0, drinkCost = 2, sandwichCost = 4, nbrDrink = 0, nbrSW = 0;
+	cout << setw(23) <<"How many drinks?: ";
+	cin >> nbrDrink;
+	cout << setw(27) << "How many Sandwiches?: ";
+	cin >> nbrSW;
+	_asm {
+		mov ax, drinkCost;		// ax = drinkCost
+		imul nbrDrink;		// dx:ax = drinkCost * nbrDrink
+		mov bx, ax;			// bx = drink Cost * nbrDrink
+		mov ax, sandwichCost;	// ax = sandwichCost
+		imul nbrSW;			// dx:ax = sandwichCost * nbrSW
+		add ax, bx;			// ax = ax + bx
+		mov totalCost, ax;		// totalCost = ax + bx	}
+	cout << setw(24) << "Your total bill $" << totalCost << endl;
+	system("pause");
+	return 0;
+}
