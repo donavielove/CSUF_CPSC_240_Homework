@@ -1,0 +1,32 @@
+#include<iostream>
+#include <iomanip>
+#include<string>
+using namespace std;
+//problem 4
+int main() {
+	short n, hundred = 100, ten = 10, num3, num2, num1, sum;
+	cout << "Enter a 3 digit int number: ";
+	cin >> n;
+	_asm {
+		//digit 1
+		mov ax, n;			// ax = n
+		cwd;				// dx:ax = n
+		idiv hundred;			// ax = n/100		dx = n%10
+		mov num1, ax;			// num1 = n/100 = ax
+		//digit 2
+		mov ax, dx;			// ax = dx = n%10
+		cwd;				// dx:ax = n%10
+		idiv ten;			// ax = (n%10)/10	dx = n%10
+		mov num2, ax;			// num2 = num1/10 = ax
+		//digit 3
+		mov ax, dx;			// ax = dx =n%10
+		mov num3, ax;			// num3 = num2/10
+		//sum of digits
+		add ax, num2;			// ax = num3 + num2 
+		add ax, num1;			// ax = num3 + num2 + num1
+		mov sum, ax;			// sum = num3 + num2 + num1
+	}
+	cout << "The total digits in " << n << " is " << sum << endl;
+	system("pause");
+	return 0;
+}
