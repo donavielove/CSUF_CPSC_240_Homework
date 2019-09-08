@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+//problem 3
+int main() {
+	short celsius, f, five = 5, thirtyTwo = 32, nine = 9;
+	cout << "Enter temperature in Fahrenheit: ";
+	cin >> f;
+	_asm {
+		mov ax, f;			// ax = f
+		sub ax, thirtyTwo;		// ax = f - 32
+		mov bx, ax;			// bx = f - 32
+		cwd;				// dx:ax = f - 32
+		imul five;			// dx:ax = 5(f-32)
+		idiv nine;			// ax = 5(f-32)/9
+		mov celsius, ax;		// celsius = 5(f-32)/9	}
+cout << f << " " <<char(248) << "F is " << celsius << " " << char(248) << "C" << endl;
+	system("pause");
+	return 0;
+}
